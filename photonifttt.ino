@@ -1,10 +1,13 @@
 
 int photoresistor = A0;
 // This is where your photoresistor or phototransistor is plugged in.
+int led = D7;
+
 int analogvalue;
 // Here we are declaring the integer variable analogvalue, which we will use later to store the value of the photoresistor or phototransistor.
 void setup() 
 {
+    pinMode(led, OUTPUT);
     pinMode(photoresistor, INPUT);
     
      // We are going to declare a Particle.variable() here so that we can access the value of the photosensor from the cloud.
@@ -19,9 +22,22 @@ void loop()
     
     // This prints the value to the USB debugging serial port (for optional debugging purposes)
     Serial.printlnf("%d", analogvalue);
+    
+    if (analogvalue > 1250)
+    {
+        Particle.publish("SunshineCheck", "Sunshine", PUBLIC);
+        digitalWrite(led, HIGH);
+        delay(1000);
+        digitalWrite(led, LOW);
+    }
+    else
+    {
+        Particle.publish("SunshineCheck", "Darkness", PUBLIC);
+        digitalWrite(led, LOW);
+    }
 
     // This delay is just to prevent overflowing the serial buffer, plus we really don't need to read the sensor more than
     // 10 times per second (100 millisecond delay)
-    delay(100);
+    delay(5000);
     
 }
