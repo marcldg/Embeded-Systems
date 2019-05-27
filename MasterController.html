@@ -1,0 +1,32 @@
+<p>Date/Time: <span id="datetime"></span></p>
+
+<script>
+var dt = new Date();
+document.getElementById("datetime").innerHTML = dt.toLocaleString();
+</script>
+
+<!-- weather widget start --><a target="_blank" 
+href="https://www.booked.net/weather/burwood-30212"><img 
+src="https://w.bookcdn.com/weather/picture/4_30212_1_1_137AE9_160_ffffff_333333_08488D_1_ffffff_333333_0_6.png?scode=124&domid=w209&anc_id=41494"
+  alt="booked.net"/></a><!-- weather widget end -->
+
+<html>
+<body>
+<center> <br> <br> <br>
+<form action="https://api.particle.io/v1/devices/3c0022000a47373336323230/led?access_token=5423e8bdb6e9253221c5f12ad019014c45ea4f61" method="POST">
+Master Remote Control<br>
+<br>
+<input type="radio" name="args" value="ons">Turn On System Using Sensors.
+<br>
+<input type="radio" name="args" value="onf">Turn On System Using Weather Forecast.
+<br>
+<input type="radio" name="args" value="on">Turn On Artificial Lighting.
+<br>
+<input type="radio" name="args" value="off">Turn Off.
+<br>
+<input type="submit" value="Send">
+</form>
+</center>
+</body>
+</html>
+
